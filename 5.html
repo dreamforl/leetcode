@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <img src="./img/5.png" alt="">
+  <script>
+    var longestPalindrome = function (s) {
+      if (s.length === 1) {
+        return s
+      }
+      let max = s[0]
+      for (let i = 0; i < s.length; i++) {
+        for (let j = i + 1; j < s.length + 1; j++) {
+          let temp = s.slice(i, j)
+          if (judge(temp) && temp.length > max.length) {
+            max = temp
+          }
+        }
+      }
+      return max
+    };
+    function judge(str) {
+      let result = true
+      if (str.length % 2 === 0) {
+        for (let i = 0; i <= str.length / 2; i++) {
+          if (str[i] !== str[str.length - i - 1]) {
+            result = false
+            break
+          }
+        }
+      } else {
+        for (let i = 0; i <= (str.length - 1) / 2; i++) {
+          if (str[i] !== str[str.length - i - 1]) {
+            result = false
+            break
+          }
+        }
+      }
+      return result
+    }
+  </script>
+</body>
+
+</html>

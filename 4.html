@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <img src="./img/4.png" alt="">
+  <script>
+    // 范围
+    // nums1.length == m
+    // nums2.length == n
+    // 0 <= m <= 1000
+    // 0 <= n <= 1000
+    // 1 <= m + n <= 2000
+    // -106 <= nums1[i], nums2[i] <= 106
+    function findMedianSortedArrays(nums1, nums2) {
+      let bigger = nums1.length > nums2.length
+      let longer, shorter
+      if (bigger) {
+        longer = nums1
+        shorter = nums2
+      } else {
+        longer = nums2;
+        shorter = nums1
+      }
+      shorter.forEach(item => {
+        let push = false
+        for (let i = 0; i < longer.length; i++) {
+          if (item <= longer[i]) {
+            longer.splice(i, 0, item)
+            push = true
+            break
+          }
+        }
+        if (!push) {
+          longer.push(item)
+        }
+      })
+      let result
+      if (longer.length % 2 === 0) {
+        result = (longer[longer.length / 2 - 1] + longer[longer.length / 2]) / 2
+      } else {
+        result = longer[(longer.length - 1) / 2]
+      }
+      return result
+    }
+    a = [1, 2]
+    b = [3, 4]
+    console.log(findMedianSortedArrays(a, b));
+  </script>
+</body>
+
+</html>
