@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <img src="./img/7.png" alt="">
+  <script>
+    // 范围
+    // -231 <= x <= 231 - 1
+    var reverse = function (x) {
+      if (x === 0) { return 0 }
+      let big = x > 0 ? true : false
+      !big && (x = - x)
+      const number = big ? 2 ** 31 - 1 : 2 ** 31
+      const p = big ? '' : '-'
+      const numberStr = number.toString()
+      let str = x.toString()
+      let resultStr = ''
+      for (let i = str.length - 1; i >= 0; i--) {
+        resultStr += str[i]
+      }
+      if (resultStr.length < numberStr.length) {
+        return parseInt(p + resultStr)
+      } else {
+        for (let i = 0; i < resultStr.length; i++) {
+          if (resultStr[i] > numberStr[i]) {
+            return 0
+          }
+          if (numberStr[i] > resultStr[i]) {
+            return parseInt(p + resultStr)
+          }
+        }
+        return parseInt(p + resultStr)
+      }
+    };
+    function handler(x, big) {
+
+    }
+  </script>
+</body>
+
+</html>
