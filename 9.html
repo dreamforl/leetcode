@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 给你一个整数 x ，如果 x 是一个回文整数，返回 true ；否则，返回 false 。
+
+    // 回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。
+    // 范围
+    // 0-231 <= x <= 231 - 1
+    var isPalindrome = function (x) {
+      if (x < 0) { return false }
+      let str = x.toString()
+      const { length } = str
+      for (let i = 0; i < length / 2; i++) {
+        if (str[i] !== str[length - 1 - i]) {
+          return false
+        }
+      }
+      return true
+    };
+  </script>
+</body>
+
+</html>
