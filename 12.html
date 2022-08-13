@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <img src="./img/12.png" alt="">
+  <script>
+    // 范围
+    // 1 <= num <= 3999
+    var intToRoman = function (num) {
+      let roman = [
+        {
+          "name": "M",
+          "key": 1000,
+          count: 0
+        },
+        {
+          "name": "D",
+          "key": 500,
+          count: 0
+        },
+        {
+          "name": "C",
+          "key": 100,
+          count: 0
+        },
+        {
+          "name": "L",
+          "key": 50,
+          count: 0
+        },
+        {
+          "name": "X",
+          "key": 10,
+          count: 0
+        },
+        {
+          "name": "V",
+          "key": 5,
+          count: 0
+        },
+        {
+          "name": "I",
+          "key": 1,
+          count: 0
+        }
+      ]
+      roman.forEach(item => {
+        item.count = parseInt(num / item.key)
+        num = num % item.key
+      })
+      let result = ''
+      result += roman[0].name.repeat(roman[0].count)
+      for (let i = 0; i < roman.length - 1; i += 2) {
+        if (roman[i + 1].count === 1 && roman[i + 2].count === 4) {
+          roman[i + 1].count = 0;
+          roman[i + 2].count = 0;
+          result += roman[i + 2].name + roman[i].name
+        } else if (roman[i + 1].count === 0 && roman[i + 2].count === 4) {
+          roman[i + 1].count = 0;
+          roman[i + 2].count = 0;
+          result += roman[i + 2].name + roman[i + 1].name
+        } else {
+          result += roman[i + 1].name.repeat(roman[i + 1].count) + roman[i + 2].name.repeat(roman[i + 2].count)
+        }
+      }
+      return result
+    };
+  </script>
+</body>
+
+</html>
