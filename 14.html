@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 14. 最长公共前缀
+    // 编写一个函数来查找字符串数组中的最长公共前缀。
+
+    // 如果不存在公共前缀，返回空字符串 ""。
+    /**
+     * @param {string[]} strs
+     * @return {string}
+     */
+    // strs = ["flower","flow","flight"]
+    var longestCommonPrefix = function (strs) {
+      const length = strs.reduce((pre, item) => {
+        if (pre < item.length) {
+          return pre
+        } else {
+          return item.length
+        }
+      }, strs[0].length)
+      let result = ''
+      for (let i = 0; i < length; i++) {
+        for (let j = 0; j < strs.length - 1; j++) {
+          if(strs[j][i] !== strs[j+1][i]){
+            return result
+          }
+        }
+        result += strs[0][i]
+      }
+      return result
+    };
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 16. 最接近的三数之和
+    // 给你一个长度为 n 的整数数组 nums 和 一个目标值 target。请你从 nums 中选出三个整数，使它们的和与 target 最接近。
+    // 返回这三个数的和。
+    var threeSumClosest = function (nums, target) {
+      let resultList = []
+      for (let k = 0; k < 3; k++) {
+        let index = getFirstIndex(nums, resultList)
+        let diff = nums[index] - target
+        let min = diff > 0 ? diff : -diff
+        for (let i = index + 1; i < nums.length; i++) {
+          let tempDiff = nums[i] - target
+          let tempMin = tempDiff > 0 ? tempDiff : -tempDiff
+          if (tempMin < min && !resultList.includes(i)) {
+            min = tempMin
+            index = i
+            console.log(i, nums[i], index);
+          }
+        }
+        resultList.push(index)
+      }
+      let result = resultList.reduce((pre, item) => {
+        return pre + nums[item]
+      }, 0)
+      // resultList = resultList.map(item=>{
+      //   return nums[item]
+      // })
+      console.log(resultList);
+      return result
+    };
+    function getFirstIndex(nums, list) {
+      for (let i = 0; i < nums.length; i++) {
+        if (!list.includes(i)) {
+          return i
+        }
+      }
+    }
+    var threeSumClosest2 = function (nums, target) {
+      let N = nums.length
+      let res = Number.MAX_SAFE_INTEGER
+      nums.sort((a, b) => a - b)
+      for (let i = 0; i < N; i++) {
+        let left = i + 1
+        let right = N - 1
+        while (left < right) {
+          let sum = nums[i] + nums[left] + nums[right]
+          console.log(nums[i], nums[left], nums[right]);
+          if (Math.abs(sum - target) < Math.abs(res - target)) {
+            res = sum
+          }
+          if (sum < target) {
+            left++
+          } else if (sum > target) {
+            right--
+          } else {
+            return sum
+          }
+        }
+      }
+      return res
+    };
+  </script>
+</body>
+
+</html>
